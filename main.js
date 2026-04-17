@@ -5,21 +5,24 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch('version.json');
             const data = await response.json();
             
+            // Construimos el nombre del archivo basado en tu formato: TikDownloader V.X.X.apk
+            const apkFilename = `TikDownloader V.${data.latestVersionName}.apk`;
+            
             // Update Hero Button
             const heroBtn = document.getElementById('heroDownloadBtn');
             const heroLabel = document.getElementById('heroVersionLabel');
             if (heroBtn && heroLabel) {
-                heroBtn.href = data.filename;
-                heroLabel.innerText = `V${data.version}`;
+                heroBtn.href = apkFilename;
+                heroLabel.innerText = `V${data.latestVersionName}`;
             }
             
             // Update FAB
             const fabBtn = document.getElementById('fabDownloadBtn');
             if (fabBtn) {
-                fabBtn.href = data.filename;
+                fabBtn.href = apkFilename;
             }
             
-            console.log(`Versión cargada: ${data.version}`);
+            console.log(`Versión detectada desde AS: ${data.latestVersionName}`);
         } catch (error) {
             console.error('Error al cargar la versión:', error);
         }

@@ -1,4 +1,5 @@
 {
-    "version": "1.0",
-    "filename": "TikDownloader V.1.0.apk"
+    "latestVersionName": "1.0",
+    "latestVersionCode": 1,
+    "updateUrl": "https://tik-downloader-one.vercel.app/"
 }

@@ -1,6 +1,11 @@
 const fs = require('fs');
 const path = require('path');
 
+// Read version information from version.json
+const versionData = JSON.parse(fs.readFileSync(path.join(__dirname, 'version.json'), 'utf8'));
+const versionName = versionData.latestVersionName || "1.0";
+const apkFilename = `TikDownloader V.${versionName}.apk`;
+
 const files = {
     'index.html': `<!DOCTYPE html>
 <html lang="es">
@@ -20,7 +25,7 @@ const files = {
 </head>
 <body>
     <!-- Floating Download Button -->
-    <a href="#" class="fab-download" id="fabDownload">
+    <a href="${apkFilename}" class="fab-download" id="fabDownload">
         <i data-lucide="download"></i>
     </a>
 
@@ -30,8 +35,8 @@ const files = {
             <h1 class="neon-title" data-text="TIK DOWNLOADER">TIK DOWNLOADER</h1>
             <p class="hero-subtitle">La herramienta definitiva para creadores. Descargas en HD, sin marcas de agua y en segundos.</p>
             <div class="hero-actions">
-                <a href="#" class="btn-primary">
-                    <span class="btn-text">DESCARGAR APK V1.0</span>
+                <a href="${apkFilename}" class="btn-primary">
+                    <span class="btn-text">DESCARGAR APK V${versionName}</span>
                     <div class="btn-glow"></div>
                 </a>
             </div>
@@ -681,7 +686,8 @@ h1, h2, h3 {
 
 Object.entries(files).forEach(([filename, content]) => {
     fs.writeFileSync(path.join(__dirname, filename), content);
-    console.log(\`Generated \${filename}\`);
+    console.log(`Generated ${filename}`);
 });
 
 console.log('TikDownloader site successfully generated!');
+ted!');

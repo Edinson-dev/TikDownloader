@@ -1,4 +1,32 @@
 document.addEventListener('DOMContentLoaded', () => {
+    // Dynamic Versioning Logic
+    const fetchVersion = async () => {
+        try {
+            const response = await fetch('version.json');
+            const data = await response.json();
+            
+            // Update Hero Button
+            const heroBtn = document.getElementById('heroDownloadBtn');
+            const heroLabel = document.getElementById('heroVersionLabel');
+            if (heroBtn && heroLabel) {
+                heroBtn.href = data.filename;
+                heroLabel.innerText = `V${data.version}`;
+            }
+            
+            // Update FAB
+            const fabBtn = document.getElementById('fabDownloadBtn');
+            if (fabBtn) {
+                fabBtn.href = data.filename;
+            }
+            
+            console.log(`Versión cargada: ${data.version}`);
+        } catch (error) {
+            console.error('Error al cargar la versión:', error);
+        }
+    };
+
+    fetchVersion();
+
     // Scroll Reveal Intersection Observer
     const scrollElements = document.querySelectorAll('.scroll-reveal');
 
